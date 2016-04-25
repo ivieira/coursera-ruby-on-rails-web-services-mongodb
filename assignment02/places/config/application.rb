@@ -20,6 +20,15 @@ module Places
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    #bootstraps mongoid within applications -- like rails console
+    Mongoid.load!('./config/mongoid.yml')
+
+    #which default ORM are we using with scaffold
+    #add  --orm none, mongoid, or active_record
+    #    to rails generate cmd line to be specific
+    #config.generators {|g| g.orm :active_record}
+    config.generators {|g| g.orm :mongoid}
+
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
   end
